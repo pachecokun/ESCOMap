@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textView3"
+        tools:text="Crear Usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Consultar eventos"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="338dp"
+        android:layout_height="54dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText8"
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Mes"
+            android:inputType="date" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consultar" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eventos encontrados:" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:entries="@array/events_array"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false" />
+
+</LinearLayout>

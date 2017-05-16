@@ -5,4 +5,11 @@
         <item>H</item>
         <item>M</item>
     </string-array>
+    <string-array name="events_array">
+        <item>Expo ESCOM</item>
+        <item>Conferencia Microsoft</item>
+        <item>Conferencia Redes Neuronales</item>
+        <item>Conferencia Seguridad Informática</item>
+        <item>Concurso Algoritmia</item>
+    </string-array>
 </resources>
