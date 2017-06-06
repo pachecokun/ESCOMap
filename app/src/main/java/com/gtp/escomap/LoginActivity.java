@@ -3,6 +3,7 @@ package com.gtp.escomap;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -28,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Button btnIniciarSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        btnIniciarSesion = (Button) findViewById(R.id.email_sign_in_button);
+        btnIniciarSesion.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tvUser = (TextView) findViewById(R.id.email);
+                String email = tvUser.getText().toString();
+                if (email.startsWith("PA")) {
+                    Intent intent = new Intent(getBaseContext(), mainPA.class);
+                    intent.putExtra("Name",email.substring(2));
+                    startActivity(intent);
+                }
+
+            }
+        });
     }
 
     private void populateAutoComplete() {

@@ -5,9 +5,47 @@
     tools:context="com.gtp.escomap.Nueva_solicitud">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingrese el nombe de la clase:"
+            android:labelFor="@+id/txtNombreEvento"
+            />
+
+        <EditText
+            android:id="@+id/txtNombreCrearClase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            />
+        <TextView
+            android:id="@+id/textView443"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccione el grupo al que desea asignar la clase:"
+            android:labelFor="@+id/spinnerGrupo"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            ></Spinner>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crear clase"
+            />
+
+
+    </LinearLayout>
 
 </FrameLayout>
