@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gtp.escomap.Crear_clase">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingrese el nombre de la clase:"
+            android:labelFor="@+id/txtNombreEvento"
+            />
+
+        <EditText
+            android:id="@+id/txtNombreCrearClase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            />
+        <TextView
+            android:id="@+id/textView443"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccione el grupo al que desea asignar la clase:"
+            android:labelFor="@+id/spinnerGrupo"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            ></Spinner>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            />
+
+        <ListView
+            android:id="@+id/lvProfesores"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+</FrameLayout>

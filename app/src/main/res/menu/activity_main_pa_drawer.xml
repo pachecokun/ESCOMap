@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Crear_evento"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Import" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Slideshow" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group-->
+
+    <item android:title="Solicitudes">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/Nueva_solicitud"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Nueva solicitud" />
+            <item
+                android:id="@+id/Consultar_solicitudes"
+                android:icon="@android:drawable/ic_input_get"
+                android:title="Consultar solicitudes" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Usuarios">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/Nuevo_usuario"
+                android:icon="@drawable/ic_new_user"
+                android:title="Nuevo usuario" />
+            <item
+                android:id="@+id/Modificar_usuario"
+                android:icon="@drawable/ic_settings"
+                android:title="Modificar usuario" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Eventos">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/Crear_evento"
+                android:icon="@drawable/ic_new_event"
+                android:title="Crear evento" />
+            <item
+                android:id="@+id/Consultar_eventos"
+                android:icon="@drawable/ic_place"
+                android:title="Consultar eventos" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Clases">
+        <menu>
+            <item
+                android:id="@+id/Crear_clase"
+                android:icon="@drawable/ic_add_class"
+                android:title="Crear clase" />
+            <item
+                android:id="@+id/Consultar_clases"
+                android:icon="@drawable/ic_class"
+                android:title="Consultar clases" />
+        </menu>
+    </item>
+    <item android:title="Profesores">
+        <menu>
+            <item
+                android:id="@+id/Crear_profesor"
+                android:icon="@drawable/ic_add_teacher"
+                android:title="Crear profesor" />
+            <item
+                android:id="@+id/Consultar_profesores"
+                android:icon="@drawable/ic_teachers"
+                android:title="Consultar profesores" />
+        </menu>
+    </item>
+    <item android:title="Mapa">
+        <menu>
+            <item
+                android:id="@+id/Consultar_mapa"
+                android:icon="@drawable/ic_map"
+                android:title="Consultar mapa" />
+        </menu>
+    </item>
+
+</menu>
