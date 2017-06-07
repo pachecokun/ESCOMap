@@ -5,14 +5,20 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.TextViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,6 +28,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.zip.Inflater;
 
 
 /**
@@ -45,21 +53,24 @@ public class Consultar_mapa extends Fragment {
     MapView mapView;
     ListView lista;
     GoogleMap map;
-    ArrayAdapter<Evento> eventosAdapter;
+    CustomAdapter eventosAdapter;
 
-    private MapaFragment.OnFragmentInteractionListener mListener;
+    private Consultar_mapa.OnFragmentInteractionListener mListener;
 
     public Consultar_mapa() {
         // Required empty public constructor
     }
 
     Evento[] eventos = new Evento[]{
-            new Evento(19.504571, -99.146764,"Reclutamiento Microsoft",""),
-            new Evento(19.504850, -99.146741,"Plática chaira","")
+            new Evento(19.504571, -99.146764,"Reclutamiento Microsoft","","Sala 14"),
+            new Evento(19.504850, -99.146741,"Baile de primavera","","Explanada"),
+            new Evento(19.504664, -99.146848,"Votación subdirector","","Trofeos"),
+            new Evento(19.503884, -99.147209,"Presentación bandas","","Campo"),
+            new Evento(19.504574, -99.145091,"Torneo fútbol","","Campo fútbol")
     };
 
     public void addEvents(){
-        eventosAdapter.addAll(eventos);
+        eventosAdapter = new CustomAdapter(eventos,getContext());
         lista.setAdapter(eventosAdapter);
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,11 +95,11 @@ public class Consultar_mapa extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MapaFragment.
+     * @return A new instance of fragment Consultar_mapa.
      */
     // TODO: Rename and change types and number of parameters
-    public static MapaFragment newInstance(String param1, String param2) {
-        MapaFragment fragment = new MapaFragment();
+    public static Consultar_mapa newInstance(String param1, String param2) {
+        Consultar_mapa fragment = new Consultar_mapa();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -130,13 +141,13 @@ public class Consultar_mapa extends Fragment {
                 }
                 map.getUiSettings().setMyLocationButtonEnabled(true);
                 map.setMyLocationEnabled(true);
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(19.504553, -99.146909), 19);
+                map.setMapType(map.MAP_TYPE_NORMAL);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(19.504553, -99.146909), 17);
                 map.animateCamera(cameraUpdate);
 
             }
         });
         lista = (ListView) v.findViewById(R.id.list_events);
-        eventosAdapter = new ArrayAdapter<Evento>(getContext(),android.R.layout.simple_list_item_1);
         addEvents();
         return v;
     }
@@ -187,4 +198,59 @@ public class Consultar_mapa extends Fragment {
         mapView.onLowMemory();
     }
 
+}
+class CustomAdapter extends BaseAdapter{
+    Evento[] data;
+    Context context;
+    public CustomAdapter(Evento[] objects,Context c) {
+        data = objects;
+        context = c;
+    }
+
+    @Override
+    public int getCount() {
+        return data.length;
+    }
+
+    @Override
+    public Evento getItem(int position) {
+        return data[position];
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        View res;
+        ViewCache cache;
+        if(convertView==null){
+            LayoutInflater i = LayoutInflater.from(context);
+            res = i.inflate(R.layout.item_evento,null);
+            cache = new ViewCache();
+            cache.text_nombre = (TextView) res.findViewById(R.id.text_nombre);
+            cache.text_espacio = (TextView) res.findViewById(R.id.text_espacio);
+            cache.text_horario = (TextView) res.findViewById(R.id.text_horario);
+            res.setTag(cache);
+        }
+        else{
+            res = convertView;
+            cache = (ViewCache) res.getTag();
+        }
+        Evento e = data[position];
+        cache.text_nombre.setText(e.nombre);
+        cache.text_espacio.setText(e.espacio);
+        cache.text_horario.setText("00:00 - 00:00");
+        return res;
+    }
+}
+
+
+class ViewCache{
+    TextView text_nombre;
+    TextView text_espacio;
+    TextView text_horario;
 }

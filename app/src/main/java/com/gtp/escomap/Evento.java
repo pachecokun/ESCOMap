@@ -15,14 +15,13 @@ public class Evento {
     Date tiempo_inicio;
     Date tiempo_fin;
 
-    public Evento(double lat, double lon, String nombre, String descripcion) {
+    public Evento(double lat, double lon, String nombre, String descripcion, String espacio) {
         this.lat = lat;
         this.lon = lon;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.espacio = espacio;
     }
-
-
 
     @Override
     public String toString() {
