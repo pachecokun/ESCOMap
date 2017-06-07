@@ -3,6 +3,7 @@ package com.gtp.escomap;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 
 /**
@@ -61,17 +63,40 @@ public class Crear_clase extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         String[] grupos = {"3CM1","3CM2", "3CM3", "3CM4"};
+        Spinner spinner = (Spinner) getView().findViewById(R.id.spinnerGrupo);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, grupos); //selected item will look like a spinner set from XML
+        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adaptador);
 
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getContext(), R.layout.simple_list_item1, grupos);
+        String[] profesores = {"Axel Ernesto Cervantes Moreno","Miguel Olvera Aldana"};
+        Spinner spinner1 = (Spinner) getView().findViewById(R.id.spinnerProfesor);
+        ArrayAdapter<String> adaptador1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, profesores); //selected item will look like a spinner set from XML
+        adaptador1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(adaptador1);
 
+        String[] salones = {"2212","2213"};
+        Spinner spinner2 = (Spinner) getView().findViewById(R.id.spinnerSalon);
+        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, salones); //selected item will look like a spinner set from XML
+        adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(adaptador2);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_crear_clase, container, false);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
