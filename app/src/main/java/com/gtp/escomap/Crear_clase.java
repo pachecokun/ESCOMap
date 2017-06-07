@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,8 @@ public class Crear_clase extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         String[] grupos = {"3CM1","3CM2", "3CM3", "3CM4"};
-        //ArrayAdapter<String> adaptador = new ArrayAdapter<>(getContext(), R.layout.fragment_crear_clase, R.id.spinnerGrupo);
+
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getContext(), R.layout.simple_list_item1, grupos);
 
     }
 
