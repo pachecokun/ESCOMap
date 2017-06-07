@@ -12,4 +12,18 @@
         <item>Conferencia Seguridad Informática</item>
         <item>Concurso Algoritmia</item>
     </string-array>
+    <string-array name="events_2_array">
+        <item>Reclutamiento Microsoft</item>
+        <item>Baile de primavera</item>
+        <item>Votación Subdirector</item>
+        <item>Presentación bandas</item>
+        <item>Torneo de fútbol</item>
+    </string-array>
+    <string-array name="teachers_array">
+        <item>Marco Antonio Dorantes</item>
+        <item>Josué Rangel</item>
+        <item>Axel Moreno Cervantes</item>
+        <item>Virginia Sánchez Cruz</item>
+        <item>Rosaura Palma Orozco</item>
+    </string-array>
 </resources>
