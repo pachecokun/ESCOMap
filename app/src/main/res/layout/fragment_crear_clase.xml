@@ -21,7 +21,7 @@
 
         <EditText
             android:id="@+id/txtNombreCrearClase"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             />
@@ -34,10 +34,33 @@
             />
 
         <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"></Spinner>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/spinnerGrupo"
+            android:text="Profesor:" />
+
+        <Spinner
             android:id="@+id/spinnerGrupo"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            ></Spinner>
+            android:layout_width="match_parent"
+            android:layout_height="50dp"></Spinner>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/spinnerGrupo"
+            android:text="Salón:" />
+
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"></Spinner>
 
         <Button
             android:layout_width="wrap_content"
