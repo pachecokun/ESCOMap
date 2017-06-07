@@ -112,7 +112,7 @@ public class mainPA extends AppCompatActivity
         } else if (id == R.id.Crear_evento) {
             fragment = new Crear_evento();
         } else if (id == R.id.Consultar_eventos) {
-            fragment = new MapaFragment();
+            fragment = new Consultar_eventos();
         } else if (id == R.id.Crear_clase) {
             fragment = new Crear_clase();
         } else if (id == R.id.Consultar_clases) {

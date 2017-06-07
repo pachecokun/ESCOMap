@@ -1,12 +1,27 @@
 package com.gtp.escomap;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 /**
@@ -27,10 +42,40 @@ public class Consultar_mapa extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    MapView mapView;
+    ListView lista;
+    GoogleMap map;
+    ArrayAdapter<Evento> eventosAdapter;
+
+    private MapaFragment.OnFragmentInteractionListener mListener;
 
     public Consultar_mapa() {
         // Required empty public constructor
+    }
+
+    Evento[] eventos = new Evento[]{
+            new Evento(19.504571, -99.146764,"Reclutamiento Microsoft",""),
+            new Evento(19.504850, -99.146741,"Plática chaira","")
+    };
+
+    public void addEvents(){
+        eventosAdapter.addAll(eventos);
+        lista.setAdapter(eventosAdapter);
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                map.clear();
+                Evento e = eventosAdapter.getItem(position);
+
+                Marker m = map.addMarker(new MarkerOptions().
+                        position(new LatLng(e.lat,e.lon)).
+                        title(e.nombre)
+                );
+                m.showInfoWindow();
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(e.lat,e.lon), 19);
+                map.animateCamera(cameraUpdate);
+            }
+        });
     }
 
     /**
@@ -39,11 +84,11 @@ public class Consultar_mapa extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Consultar_mapa.
+     * @return A new instance of fragment MapaFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Consultar_mapa newInstance(String param1, String param2) {
-        Consultar_mapa fragment = new Consultar_mapa();
+    public static MapaFragment newInstance(String param1, String param2) {
+        MapaFragment fragment = new MapaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +109,36 @@ public class Consultar_mapa extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultar_mapa, container, false);
+        // Gets the MapView from the XML layout and creates it
+        View v = inflater.inflate(R.layout.fragment_consultar_mapa, container, false);
+        getActivity().setTitle("Eventos de hoy");
+        mapView = (MapView) v.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                map = googleMap;
+                map.getUiSettings().setMyLocationButtonEnabled(true);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{
+                                    Manifest.permission.ACCESS_FINE_LOCATION,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION
+                            },1);
+                    return;
+                }
+                map.getUiSettings().setMyLocationButtonEnabled(true);
+                map.setMyLocationEnabled(true);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(19.504553, -99.146909), 19);
+                map.animateCamera(cameraUpdate);
+
+            }
+        });
+        lista = (ListView) v.findViewById(R.id.list_events);
+        eventosAdapter = new ArrayAdapter<Evento>(getContext(),android.R.layout.simple_list_item_1);
+        addEvents();
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -74,22 +148,6 @@ public class Consultar_mapa extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -105,4 +163,28 @@ public class Consultar_mapa extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+    @Override
+    public void onResume() {
+        mapView.onResume();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
 }
