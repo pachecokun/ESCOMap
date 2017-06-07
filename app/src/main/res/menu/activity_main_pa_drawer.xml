@@ -84,6 +84,10 @@
                 android:id="@+id/Consultar_profesores"
                 android:icon="@drawable/ic_teachers"
                 android:title="Consultar profesores" />
+            <item
+                android:id="@+id/Consultar_horario_profesor"
+                android:icon="@drawable/ic_schedule_teacher"
+                android:title="Consultar horario profesor" />
         </menu>
     </item>
     <item android:title="Mapa">

@@ -19,6 +19,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import layout.Consultar_horario_profesor;
+
 public class mainPA extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         Crear_evento.OnFragmentInteractionListener,
@@ -31,7 +33,8 @@ public class mainPA extends AppCompatActivity
         Consultar_clases.OnFragmentInteractionListener,
         Crear_profesor.OnFragmentInteractionListener,
         Consultar_profesores.OnFragmentInteractionListener,
-        Consultar_mapa.OnFragmentInteractionListener {
+        Consultar_mapa.OnFragmentInteractionListener,
+        Consultar_horario_profesor.OnFragmentInteractionListener {
 
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -123,6 +126,8 @@ public class mainPA extends AppCompatActivity
             fragment = new Consultar_profesores();
         } else if (id == R.id.Consultar_mapa) {
             fragment = new Consultar_mapa();
+        } else if (id == R.id.Consultar_horario_profesor) {
+            fragment = new Consultar_horario_profesor();
         }
 
         if (fragment != null) {

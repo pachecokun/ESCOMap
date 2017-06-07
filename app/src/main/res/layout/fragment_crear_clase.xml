@@ -34,9 +34,11 @@
             />
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spinnerGrupo"
             android:layout_width="match_parent"
-            android:layout_height="50dp"></Spinner>
+            android:layout_height="50dp">
+
+        </Spinner>
 
         <TextView
             android:id="@+id/textView6"
@@ -46,9 +48,11 @@
             android:text="Profesor:" />
 
         <Spinner
-            android:id="@+id/spinnerGrupo"
+            android:id="@+id/spinnerProfesor"
             android:layout_width="match_parent"
-            android:layout_height="50dp"></Spinner>
+            android:layout_height="50dp">
+
+        </Spinner>
 
         <TextView
             android:id="@+id/textView7"
@@ -58,9 +62,11 @@
             android:text="Salón:" />
 
         <Spinner
-            android:id="@+id/spinner3"
+            android:id="@+id/spinnerSalon"
             android:layout_width="match_parent"
-            android:layout_height="50dp"></Spinner>
+            android:layout_height="50dp">
+
+        </Spinner>
 
         <Button
             android:layout_width="wrap_content"
