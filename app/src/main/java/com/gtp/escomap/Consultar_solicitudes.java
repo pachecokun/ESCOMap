@@ -1,12 +1,18 @@
 package com.gtp.escomap;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,13 +63,22 @@ public class Consultar_solicitudes extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultar_solicitudes, container, false);
+        View v = inflater.inflate(R.layout.fragment_consultar_solicitudes, container, false);
+        registerForContextMenu((ListView)v.findViewById(R.id.lvSolicitudes));
+        return v;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -88,6 +103,13 @@ public class Consultar_solicitudes extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        menu.add("Eliminar solicitud");
     }
 
     /**
