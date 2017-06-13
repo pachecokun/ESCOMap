@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@+id/txtCriterio"
-            android:text="Ingrese el ciretrio de búsqueda:" />
+            android:text="Ingrese el criterio de búsqueda:" />
 
         <EditText
             android:id="@+id/txtCriterio"
