@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,9 @@ public class Consultar_eventos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultar_eventos, container, false);
+        View v = inflater.inflate(R.layout.fragment_consultar_eventos, container, false);
+        registerForContextMenu(v.findViewById(R.id.lvEventos));
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +92,12 @@ public class Consultar_eventos extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add("Eliminar evento");
     }
 
     /**
