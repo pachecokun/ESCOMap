@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 
 /**
@@ -64,7 +66,9 @@ public class Consultar_profesores extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultar_profesores, container, false);
+        View v = inflater.inflate(R.layout.fragment_consultar_profesores, container, false);
+        registerForContextMenu((ListView) v.findViewById(R.id.lvProfesores));
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +93,12 @@ public class Consultar_profesores extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add("Eliminar profesor");
     }
 
     /**
